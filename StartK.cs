@@ -23,7 +23,7 @@ namespace KinoTTHK_K
         SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|KinoDB.mdf; Integrated Security = True");
 
         SqlCommand cmd;
-        SqlDataAdapter adapter;
+        SqlDataAdapter adapter, adapter2;
 
         public StartK()
         {
@@ -33,7 +33,7 @@ namespace KinoTTHK_K
             this.Text = "Appolo"; // Измененение название приложения *только космитическое
             adapter.Fill(seat_tabel);
             listbox1 = new ListBox();
-            listbox1.Font = new Font("Calibri", 14);
+            listbox1.Font = new Font("Calibri", 12);
             listbox1.Location = new Point(59, 150);
 
             foreach (DataRow row in seat_tabel.Rows)
@@ -55,16 +55,22 @@ namespace KinoTTHK_K
             listbox1.MouseClick += listBox1_SelectedIndexChanged;
             this.Controls.Add(listbox1);
 
+            connect.Open();
+            adapter2 = new SqlDataAdapter("SELECT * FROM Film", connect);
+            DataTable film_tabel = new DataTable();
+            adapter2.Fill(film_tabel);
             listCinema = new ComboBox();
-            listCinema.Font = new Font("Calibri", 14);
+            listCinema.Font = new Font("Calibri", 12);
             listCinema.Location = new Point(59, 10);
-            listCinema.Items.Add("Film1");
-            listCinema.Items.Add("Film2");
-            listCinema.Items.Add("Film3");
-            listCinema.Items.Add("Film4");
             listCinema.Text = "Vali filmi";
+            foreach (DataRow row in film_tabel.Rows)
+            {
+                listCinema.Items.Add(row["Film"]);
+            }
+
             listCinema.MouseClick += listCinema_SelectedIndexChanged;
             this.Controls.Add(listCinema);
+            connect.Close();
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
