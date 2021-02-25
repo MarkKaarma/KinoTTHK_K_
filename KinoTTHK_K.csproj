@@ -99,6 +99,9 @@
     <EmbeddedResource Include="Roomid.resx">
       <DependentUpon>Roomid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TimeFilm.resx">
+      <DependentUpon>TimeFilm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

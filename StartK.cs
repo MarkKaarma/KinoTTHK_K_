@@ -16,6 +16,7 @@ namespace KinoTTHK_K
         public int i=0, j=0;
         int[] rida_list;
         int[] koht_list;
+        
         ListBox listbox1;
         ComboBox listCinema;
 
@@ -82,8 +83,9 @@ namespace KinoTTHK_K
         }
 
         private void listCinema_SelectedIndexChanged(object sender, EventArgs e) 
-        {
-            
+        {     
+            TimeFilm timefill = new TimeFilm();
+            timefill.Show();
         }
 
     }
